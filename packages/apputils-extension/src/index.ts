@@ -334,8 +334,9 @@ export const toggleHeader: JupyterFrontEndPlugin<void> = {
 async function updateTabTitle(workspace: string, db: IStateDB, name: string) {
   const data: any = await db.toJSON();
   let current: string = data['layout-restorer:data']?.main?.current;
+  let labName = PageConfig.getOption('appName') || name;
   if (current === undefined) {
-    document.title = `${PageConfig.getOption('appName') || 'JupyterLab'}${
+    document.title = `${labName}${
       workspace.startsWith('auto-') ? ` (${workspace})` : ``
     }`;
   } else {
@@ -349,9 +350,9 @@ async function updateTabTitle(workspace: string, db: IStateDB, name: string) {
     if (workspace.startsWith('auto-')) {
       document.title = `${current} (${workspace}${
         count > 1 ? ` : ${count}` : ``
-      }) - ${name}`;
+      }) - ${labName}`;
     } else {
-      document.title = `${current}${count > 1 ? ` (${count})` : ``} - ${name}`;
+      document.title = `${current}${count > 1 ? ` (${count})` : ``} - ${labName}`;
     }
   }
 }
