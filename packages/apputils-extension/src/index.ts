@@ -336,6 +336,7 @@ async function updateTabTitle(workspace: string, db: IStateDB, name: string) {
   let current: string = data['layout-restorer:data']?.main?.current;
   console.log(PageConfig.getOption('appName'));
   console.log(name);
+  debugger;
   let labName = PageConfig.getOption('appName') || name;
   if (current === undefined) {
     document.title = `${labName}${
