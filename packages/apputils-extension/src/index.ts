@@ -334,6 +334,8 @@ export const toggleHeader: JupyterFrontEndPlugin<void> = {
 async function updateTabTitle(workspace: string, db: IStateDB, name: string) {
   const data: any = await db.toJSON();
   let current: string = data['layout-restorer:data']?.main?.current;
+  console.log(PageConfig.getOption('appName'));
+  console.log(name);
   let labName = PageConfig.getOption('appName') || name;
   if (current === undefined) {
     document.title = `${labName}${
